@@ -123,8 +123,8 @@ export default {
 
 <style scoped>
 .board {
-  width: 500px;
-  height: 500px;
+  width: 334px;
+  height: 334px;
   border: 0.5px solid black;
   display: flex;
   flex-direction: row;
