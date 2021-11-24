@@ -13,17 +13,19 @@
         </v-row>
       </v-container>
     </v-main>
+    <AppFooter />
   </v-app>
 </template>
 
 <script>
+import AppFooter from "./components/AppFooter";
 import AppHeader from "./components/AppHeader";
 import ControlPanel from "./components/ControlPanel";
 import Board from "./components/Board";
 
 export default {
   name: "App",
-  components: { AppHeader, ControlPanel, Board },
+  components: { AppFooter, AppHeader, ControlPanel, Board },
 };
 </script>
 

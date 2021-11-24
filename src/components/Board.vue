@@ -31,6 +31,9 @@ export default {
     EventBus.$on("play", this.play);
     EventBus.$on("stop", this.stop);
     EventBus.$on("reset", this.reset);
+    EventBus.$on("size", (data) => {
+      this.updateSize(data);
+    });
     this.setup();
   },
   methods: {
@@ -61,6 +64,10 @@ export default {
       clearInterval(this.interval);
     },
     reset() {
+      this.setup();
+    },
+    updateSize(value) {
+      this.size = value;
       this.setup();
     },
     toggleTileStatus(index) {

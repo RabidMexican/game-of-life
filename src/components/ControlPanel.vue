@@ -1,11 +1,26 @@
 <template>
   <v-card outline>
-    <v-card-title>Controls</v-card-title>
+    <v-card-title>Control Panel</v-card-title>
     <v-card-text>
       Use the controls below to play the Game of Life. Click on some squares to
       define it as "alive" and press play to see the results. You must stop the
       game in order to change the tiles, or reset the board.
     </v-card-text>
+    <v-divider />
+    <v-card-subtitle>Grid Size</v-card-subtitle>
+    <v-card-text>
+      <v-slider
+        v-model="size"
+        @change="updateSize"
+        :tick-labels="labels"
+        :max="2"
+        :disabled="playing"
+        step="1"
+        ticks="always"
+        tick-size="4"
+      />
+    </v-card-text>
+    <v-divider />
     <v-card-actions>
       <v-btn @click="play" :disabled="playing" color="success" text>
         PLAY
@@ -27,6 +42,8 @@ export default {
   data() {
     return {
       playing: false,
+      size: 1,
+      labels: [100, 400, 1600],
     };
   },
   methods: {
@@ -40,6 +57,9 @@ export default {
     },
     reset() {
       EventBus.$emit("reset");
+    },
+    updateSize() {
+      EventBus.$emit("size", this.labels[this.size]);
     },
   },
 };
