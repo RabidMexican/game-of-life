@@ -1,11 +1,6 @@
 <template>
   <v-card outline>
     <v-card-title>Control Panel</v-card-title>
-    <v-card-text>
-      Use the controls below to play the Game of Life. Click on some squares to
-      define it as "alive" and press play to see the results. You must stop the
-      game in order to change the tiles, or reset the board.
-    </v-card-text>
     <v-divider />
     <v-card-subtitle>Grid Size</v-card-subtitle>
     <v-card-text>
