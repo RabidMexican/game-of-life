@@ -1,8 +1,8 @@
 <template>
   <div
-    class="tile"
+    class="tile hover:"
     :style="{ height: size + '%', width: size + '%' }"
-    v-bind:class="{ alive: alive }"
+    v-bind:class="{ alive: alive, playing: playing }"
     @click="$emit('toggle')"
   />
 </template>
@@ -23,6 +23,10 @@ export default {
       require: true,
       type: Boolean,
     },
+    playing: {
+      require: true,
+      type: Boolean,
+    },
   },
   computed: {
     size() {
@@ -34,10 +38,20 @@ export default {
 
 <style scoped>
 .tile {
-  border: 0.5px solid black;
+  border: 1px solid black;
   box-sizing: border-box;
+  background-color: #2e2e2e;
+}
+.tile:hover {
+  cursor: pointer;
 }
 .alive {
-  background-color: #000000;
+  background-color: #0cce26;
+}
+.playing {
+  border: none;
+}
+.playing:hover {
+  cursor: not-allowed;
 }
 </style>

@@ -1,23 +1,21 @@
 <template>
-  <div>
-    <div class="board" v-if="this.board !== null">
-      <tile
-        v-for="(tile, i) in board"
-        :key="i"
-        :index="i"
-        :boardSize="size"
-        :alive="tile"
-        @toggle="toggleTileStatus(i)"
-      />
-    </div>
-    <button @click="play" :disabled="playing">PLAY</button>
-    <button @click="stop" :disabled="!playing">STOP</button>
-    <button @click="reset" :disabled="playing">RESET</button>
+  <div class="board" v-if="this.board !== null">
+    <Tile
+      v-for="(tile, i) in board"
+      :key="i"
+      :index="i"
+      :boardSize="size"
+      :alive="tile"
+      :playing="playing"
+      @toggle="toggleTileStatus(i)"
+    />
   </div>
 </template>
 
 <script>
+import { EventBus } from "../plugins/event-bus";
 import Tile from "./Tile";
+
 export default {
   name: "Board",
   components: { Tile },
@@ -30,6 +28,9 @@ export default {
     };
   },
   mounted() {
+    EventBus.$on("play", this.play);
+    EventBus.$on("stop", this.stop);
+    EventBus.$on("reset", this.reset);
     this.setup();
   },
   methods: {
@@ -117,7 +118,6 @@ export default {
 .board {
   width: 500px;
   height: 500px;
-  margin: auto;
   border: 0.5px solid black;
   display: flex;
   flex-direction: row;
